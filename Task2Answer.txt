@@ -1,0 +1,35 @@
+Automated Video Tagging
+
+
+
+An automatic Video Tagging System which learns from videos, their web context and comments shared on social networks.
+
+Many datasets such as sports-1M,youtube-8M are available along with their labels to train and evaluate.But their results are still restricted to the concepts annotated in the dataset, which typically has single tag per video.
+This limitation is not acceptable for real world scenario targeting a dynamic domain such as social media.
+The tagging algorithm is based on the extraction of keywords from the contextual information associated to a video. Labels are based on knowledge graph. Automated video tagging framework has to be developed as a online framework that crawls the web to index video documents as summaries of five seconds and a set of contextual tags.
+A Knowledge graph(KG) has to be maintained that updates over time and learns new world relations based on the analysis of related social media.
+The video indexing can be done based on a context-based perspective, like text and metadata available in the webpage where the video is embedded or referred comments on social networks.
+It can be based on KG concepts, but sometimes concepts may not have associated types if not found in KG API.
+
+The first step to video indexing is video action summarization.The video action summarization algorithm that analyzes the full video using computer vision techniques 
+to select relevant scenes. The second step is the contextual tagging algorithm which crawls the internet to find keywords associated to the indexed videos and maps them
+ to entities in the KG. These 2 are combined to generate a dataset.The goal of video action summarization is to automatically select those video segments that allows a rough understanding of the semantic contents of the video.
+The length of the summaries must fulfill a trade-off between being long enough to capture a whole action, but being also short enough not to mix more than one activity.It has to be between
+ 3-5 sec long.The algorithm should segment the video into sequences with a potential of containing rich semantic information and the relevance of each segment is estimated based on 
+an action and object recognition engines.It can be segmented based on color and motion by using optical flow.The objects are detected and tracked based on K-means clustering across space 
+and time.A video segment score is computed by summing the object and action score, so that the N most relevant segments are kept as video summaries.
+The videos crawled can be indexed with a rich collection of tags associated to the concepts of the KG. The tags are generated after a combination of web scraping and social media networks.
+The contextual tagging consists of 2 parts: keyword extraction from internet crawling and keyword mapping to KG entities.
+Once all the text information is gathered , keywords can be  extracted using NLP techniques.In long texts, keywords can be extracted using Rapid automatic keyword extraction algorithm.
+In short text , n-grams can be used.Keyword mapping to KG entities can be done by retrieving concept candidates from the KG.For each concept candidate, intra- and inter- score are summed 
+and only those above a predefined threshold are kept. In n-gram keywords, the concept with highest score is kept for each n-gram keyword.Once all video concepts are extracted, they needs
+ to be sorted by descriptiveness and relevance for a video.Then the concepts are to be translated into tags by using its tag in KG.
+The quality of this tags generated can be assessed on a available subset of youtube dataset.
+
+The automated annotations can be noisy and incomplete, it needs to be assessed by human workers.
+
+
+
+Reference:
+https://openaccess.thecvf.com/content_ICCV_2017_workshops/papers/w5/Fernandez_ViTS_Video_Tagging_ICCV_2017_paper.pdf
+
